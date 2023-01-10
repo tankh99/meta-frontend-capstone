@@ -3,13 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import BookingPage from './pages/BookingPage';
+// import 'https://fonts.googleapis.com/css2?family=Karla&family=Markazi+Text:wght@500&display=swap'
+// import 'https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500&display=swap'
 
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage/>
+  },
+  {
+    path: "/booking",
+    element: <BookingPage/>
+  }
+])
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const theme = extendTheme({
+  fonts: {
+    heading: `"Markazi Text", serif`,
+    body: `'Karla', sans-serif`
+  }
+})
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider theme={theme}>
+      {/* <RouterProvider router={router}/> */}
+      <App/>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
